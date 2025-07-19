@@ -22,7 +22,7 @@ export function Header() {
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
           </div>
           <div>
-            <h1 className="text-xl font-bold text-gray-900 dark:text-white">Code Cleaner</h1>
+            <h1 className="text-xl font-bold text-gray-900 dark:text-white">Code Humanizer</h1>
             <p className="text-sm text-gray-600 dark:text-gray-400">Professional Edition</p>
           </div>
         </div>
