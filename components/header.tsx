@@ -1,7 +1,8 @@
 "use client"
 
+import Image from "next/image"
 import { ThemeSwitcher } from "./theme-switcher"
-import { Code, Zap } from "lucide-react"
+import { Zap } from "lucide-react"
 
 export function Header() {
   return (
@@ -9,8 +10,14 @@ export function Header() {
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="relative">
-            <div className="p-3 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg">
-              <Code className="w-6 h-6 text-white" />
+            <div >
+              <Image
+                src="/favicon.png"
+                alt="Favicon"
+                width={40}
+                height={40}
+                className="rounded"
+              />
             </div>
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
           </div>

@@ -1,6 +1,7 @@
 "use client"
 
-import { Heart, Github, Twitter, Coffee, Code } from "lucide-react"
+import Image from "next/image"
+import { Heart, Github, Coffee, Linkedin } from "lucide-react" // ✅ Replaced Twitter with Linkedin
 
 export function Footer() {
   return (
@@ -9,10 +10,18 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg">
-                <Code className="w-5 h-5 text-white" />
+              <div>
+                <Image
+                  src="/favicon.png"
+                  alt="Logo"
+                  width={35}
+                  height={35}
+                  className="rounded"
+                />
               </div>
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white">Code Cleaner & Humanizer</h3>
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white">
+                Code Cleaner & Humanizer
+              </h3>
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-md">
               Transform your code into clean, human-readable masterpieces while maintaining perfect syntax and
@@ -34,15 +43,34 @@ export function Footer() {
           <div>
             <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Connect</h4>
             <div className="flex gap-3">
-              <button className="p-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg transition-all duration-300">
-                <Github size={18} />
-              </button>
-              <button className="p-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg transition-all duration-300">
-                <Twitter size={18} />
-              </button>
-              <button className="p-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 text-gray-600 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 rounded-lg transition-all duration-300">
-                <Coffee size={18} />
-              </button>
+              <a
+              href="https://github.com/Vishal8700"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg transition-all duration-300"
+            >
+              <Github size={18} />
+            </a>
+
+            
+            <a
+              href="https://www.linkedin.com/in/vishal-kumar12432/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
+            >
+              <Linkedin size={18} />
+            </a>
+
+            <a
+              href="https://www.buymeacoffee.com/yourname"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 text-gray-600 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 rounded-lg transition-all duration-300"
+            >
+              <Coffee size={18} />
+            </a>
+
             </div>
           </div>
         </div>

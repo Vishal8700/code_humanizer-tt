@@ -7,6 +7,13 @@
   width: 8px;
   height: 8px;
 }
+:root {
+  --radius: 0.5rem; /* same as Tailwind's default rounded-lg */
+}
+/* globals.css */
+body {
+  background-color: #111827; /* same as Tailwind's bg-gray-900 */
+}
 
 ::-webkit-scrollbar-track {
   background: rgba(148, 163, 184, 0.1);

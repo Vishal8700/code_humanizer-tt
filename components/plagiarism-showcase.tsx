@@ -183,7 +183,7 @@ export function PlagiarismShowcase() {
         </div>
 
         {/* Success Metrics */}
-        <div className="bg-gradient-to-r from-emerald-500 to-blue-600 p-6">
+        <div className="bg-gradient-to-r from-purple-500 to-blue-600 p-6">
           <div className="grid md:grid-cols-3 gap-6 text-white">
             <div className="text-center">
               <div className="text-3xl font-bold mb-2">99.2%</div>
@@ -206,19 +206,19 @@ export function PlagiarismShowcase() {
         {[
           {
             text: "Passed all LeetCode submissions without any plagiarism flags. Amazing tool!",
-            author: "Alex Chen",
+            author: "Ankita",
             role: "Software Engineer",
             rating: 5,
           },
           {
             text: "Used it for Codeforces contests. Never got caught. Highly recommend!",
-            author: "Sarah Kim",
+            author: "Rahul",
             role: "CS Student",
             rating: 5,
           },
           {
             text: "Clean, professional results every time. Beats all major platform detectors.",
-            author: "Mike Johnson",
+            author: "Shubham",
             role: "Developer",
             rating: 5,
           },

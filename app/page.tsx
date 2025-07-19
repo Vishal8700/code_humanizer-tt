@@ -63,7 +63,7 @@ export default function Home() {
                   title: "Variable Intelligence",
                   desc: "Replaces generic names with meaningful, context-aware alternatives",
                   icon: Zap,
-                  color: "purple",
+                  color: "red",
                 },
                 {
                   title: "Format Optimization",

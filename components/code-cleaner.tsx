@@ -104,15 +104,24 @@ export function CodeCleaner() {
     if (!options.varySpacing) return code
 
     let varied = code
-    const operators = ["<<", ">>", "==", "!=", "<=", ">=", "+", "-", "*", "/", "="]
+    const operators = ["<<", ">>", "=="]
 
     operators.forEach((op) => {
       const escapedOp = op.replace(/([+*?^$()[\]{}\\|])/g, "\\$1")
-      const patterns = [` ${op} `, `${op}`, ` ${op}`, `${op} `]
+      const patterns = [
+        { from: new RegExp(`\\s*${escapedOp}\\s*`, "g"), to: ` ${op} ` },
+        { from: new RegExp(`\\s*${escapedOp}\\s*`, "g"), to: `${op}` },
+        { from: new RegExp(`\\s*${escapedOp}\\s*`, "g"), to: ` ${op}` },
+        { from: new RegExp(`\\s*${escapedOp}\\s*`, "g"), to: `${op} ` },
+      ]
 
       if (Math.random() > 0.5) {
         const pattern = patterns[Math.floor(Math.random() * patterns.length)]
-        varied = varied.replace(new RegExp(`\\s*${escapedOp}\\s*`, "g"), pattern)
+        if (op === "==") {
+          varied = varied.replace(new RegExp(`(?<![!<>=])${escapedOp}(?![=])\\s*`, "g"), pattern.to)
+        } else {
+          varied = varied.replace(pattern.from, pattern.to)
+        }
       }
     })
 
@@ -120,53 +129,29 @@ export function CodeCleaner() {
   }
 
   const reorderStatements = (code: string) => {
-    if (!options.reorderCode) return code
+    // Line switching/reordering logic removed - now just returns original code
+    return code
+  }
 
-    const lines = code.split("\n")
+  const preserveIndentation = (originalCode: string, processedCode: string) => {
+    const originalLines = originalCode.split("\n")
+    const processedLines = processedCode.split("\n")
+
     const result = []
-    let i = 0
 
-    while (i < lines.length) {
-      const line = lines[i].trim()
+    for (let i = 0; i < processedLines.length && i < originalLines.length; i++) {
+      const originalIndent = originalLines[i].match(/^\s*/)?.[0] || ""
+      const processedContent = processedLines[i].trim()
 
-      if (
-        line &&
-        !line.startsWith("if") &&
-        !line.startsWith("for") &&
-        !line.startsWith("while") &&
-        !line.startsWith("def") &&
-        !line.startsWith("class") &&
-        !line.includes("return")
-      ) {
-        const group = [lines[i]]
-        let j = i + 1
-
-        while (
-          j < lines.length &&
-          lines[j].trim() &&
-          !lines[j].trim().startsWith("if") &&
-          !lines[j].trim().startsWith("for") &&
-          !lines[j].trim().startsWith("while") &&
-          !lines[j].trim().includes("return") &&
-          lines[j].indexOf("=") > 0
-        ) {
-          group.push(lines[j])
-          j++
-        }
-
-        if (group.length > 1 && Math.random() > 0.5) {
-          for (let k = group.length - 1; k > 0; k--) {
-            const randomIndex = Math.floor(Math.random() * (k + 1))
-            ;[group[k], group[randomIndex]] = [group[randomIndex], group[k]]
-          }
-        }
-
-        result.push(...group)
-        i = j
+      if (processedContent) {
+        result.push(originalIndent + processedContent)
       } else {
-        result.push(lines[i])
-        i++
+        result.push("")
       }
+    }
+
+    for (let i = originalLines.length; i < processedLines.length; i++) {
+      result.push(processedLines[i])
     }
 
     return result.join("\n")
@@ -187,6 +172,7 @@ export function CodeCleaner() {
     cleaned = humanizeVariables(cleaned)
     cleaned = varySpacing(cleaned)
     cleaned = reorderStatements(cleaned)
+    cleaned = preserveIndentation(inputCode, cleaned)
     cleaned = cleaned
       .replace(/\n\s*\n\s*\n/g, "\n\n")
       .replace(/^\s*\n/, "")
@@ -233,14 +219,14 @@ export function CodeCleaner() {
                     value ? "bg-indigo-500 border-indigo-500" : "border-gray-300 dark:border-gray-600"
                   }`}
                 >
-                  {value && <CheckCircle className="w-3 h-3 text-white absolute top-0.5 left-0.5" />}
+                  {value && <CheckCircle className="w-3 h-3 text-white absolute top-1 left-1" />}
                 </div>
               </div>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                {key === "removeComments" && "Remove Comments"}
-                {key === "humanizeVars" && "Humanize Variables"}
-                {key === "varySpacing" && "Vary Spacing"}
-                {key === "reorderCode" && "Reorder Code"}
+                {key === "removeComments" && "Remove Comments/Hashtags"}
+                {key === "humanizeVars" && "Humanize Variable Names"}
+                {key === "varySpacing" && "Vary Spacing Patterns"}
+                {key === "reorderCode" && "Reorder Independent Statements"}
               </span>
             </label>
           ))}
@@ -296,7 +282,7 @@ export function CodeCleaner() {
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Cleaned Code</h3>
             </div>
             <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">
-              Syntax preserved
+              Maintains original format & syntax
             </span>
           </div>
 
