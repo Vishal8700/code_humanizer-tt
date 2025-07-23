@@ -42,13 +42,37 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="initial-scale=1, width=device-width, minimum-scale=1, viewport-fit=cover" />
+        <meta name="robots" content="index, follow" />
+
+        {/* Twitter Card & Social Meta */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@Quora" />
+        <meta name="twitter:title" content="AI-Code-Humanizer" />
+        <meta
+          name="twitter:description"
+          content="AI Code Humanizer is a helpful tool that makes ai code look like it was written by a real person instead of AI. When you show AI Code Humanizer some code, it changes it to add small mistakes and personal touches that human programmers typically make. AI Code Humanizer adds things like different spacing, casual comments, and less perfect but working solutions. For example, AI Code Humanizer might change variable names to be less perfect, add notes like 'I'll fix this later,' or use simpler ways to solve problems. The best part about AI Code Humanizer is that it keeps the code working while making it feel more natural and human-made. When you use AI Code Humanizer, your code won't look too perfect or machine-like anymore. Instead, AI Code Humanizer gives it that human touch with things like extra explanations in some places, forgotten comments in others, and coding styles that vary a bit throughout the code. If you want your AI-generated code to blend in with human-written code, AI Code Humanizer is the perfect tool to make that happen."
+        />
+        <meta
+          name="twitter:image"
+          content="https://cdn-icons-png.flaticon.com/512/10700/10700708.png"
+        />
+
+        {/* Open Graph for social sharing */}
+        <meta property="og:title" content="Code-Humanizer" />
+        <meta
+          property="og:description"
+          content="AI Code Humanizer is a helpful tool that makes ai code look like it was written by a real person instead of AI. When you show AI Code Humanizer some code, it changes it to add small mistakes and personal touches that human programmers typically make. AI Code Humanizer adds things like different spacing, casual comments, and less perfect but working solutions. For example, AI Code Humanizer might change variable names to be less perfect, add notes like 'I'll fix this later,' or use simpler ways to solve problems. The best part about AI Code Humanizer is that it keeps the code working while making it feel more natural and human-made. When you use AI Code Humanizer, your code won't look too perfect or machine-like anymore. Instead, AI Code Humanizer gives it that human touch with things like extra explanations in some places, forgotten comments in others, and coding styles that vary a bit throughout the code. If you want your AI-generated code to blend in with human-written code, AI Code Humanizer is the perfect tool to make that happen."
+        />
+        <meta property="og:url" content="https://codehumanizer.vercel.app" />
+        <meta
+          property="og:image"
+          content="https://cdn-icons-png.flaticon.com/512/10700/10700708.png"
+        />
+        <meta property="og:type" content="website" />
 
         {/* Google Analytics */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-Z7HZZ80RKT"
-        ></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z7HZZ80RKT"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -74,8 +98,8 @@ export default function RootLayout({
               description: "Make your code more human-friendly.",
               author: {
                 "@type": "Person",
-                name: "Vishal Kumar"
-              }
+                name: "Vishal Kumar",
+              },
             }),
           }}
         />

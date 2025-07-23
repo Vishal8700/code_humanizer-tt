@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://codehumanizer.vercel.app/sitemap.xml
